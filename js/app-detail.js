@@ -38,7 +38,7 @@ function showAppDetail() {
 
             <div class="app-buttons-row">
                 <button class="btn-install-full" onclick="window.open('${app.fileUrl}','_blank')">
-                    Установить
+                    <i class="fa fa-download"></i> Установить
                 </button>
                 <div class="subline">Версия: ${app.version} | Android: ${app.minAndroid}+</div>
             </div>
