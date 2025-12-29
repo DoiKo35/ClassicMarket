@@ -2,7 +2,8 @@ const bannerImgs = [
     "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner1.PNG",
     "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner2.PNG",
     "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner3.PNG",
-    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner4.PNG"
+    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner4.PNG",
+    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner5.PNG"
 ];
 
 let bidx = 0;
