@@ -1,7 +1,7 @@
 const bannerImgs = [
-    "img/banners/banner1.PNG",
-    "img/banners/banner2.PNG",
-    "img/banners/banner3.PNG"
+    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner1.PNG",
+    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner2.PNG",
+    "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/refs/heads/main/img/banners/banner3.PNG"
 ];
 
 let bidx = 0;
