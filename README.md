@@ -1,5 +1,5 @@
 ClassicMarket
 Альтернатива OldMarket
 
-Сайт: doiko35.github.io/classicmarket
-ТГК: t.me/cmarketoff
+Сайт: https:/doiko35.github.io/classicmarket
+ТГК: https:/t.me/cmarketoff
