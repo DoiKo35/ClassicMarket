@@ -1,0 +1,262 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:rgb(14,13,13);color:#fff;font-family:Arial,sans-serif;}
+#snow-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+
+.header{
+    display:flex;
+    gap:12px;
+    padding:12px;
+    background:#000;
+    align-items:center;
+    background-image: url("../img/background.jpg");
+    background-repeat: repeat;
+    background-size: 5%;
+    height: 72px;
+}
+.logo{width:300px;}
+.header input{margin-left:auto;padding:6px 10px;border-radius:4px;border:none;width:200px;}
+.header .back-btn{padding:6px 12px;background:#333;border:none;color:#fff;border-radius:4px;cursor:pointer;}
+
+.banner {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    margin-top:10px;
+}
+.banner img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position:center center;
+    opacity: 0; transition:opacity .8s ease-in-out;
+    z-index: 0;
+}
+.banner img.active{opacity:1;z-index:1;}
+
+.tabs{display:flex;gap:10px;padding:10px;background:#1a1a1a;}
+.tabs button{flex:1;padding:8px;background:#333;border:none;color:#fff;cursor:pointer;}
+.tabs button:hover{background:#444;}
+
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding:20px;}
+.game-card{
+    background:#222;border:1px solid #333;border-radius:6px;
+    overflow:hidden;display:flex;flex-direction:column;align-items:center;
+}
+.game-card:hover{
+    cursor: pointer;
+}
+.game-card img{
+    width:140px;height:140px;object-fit:cover;margin-top:10px;
+}
+.game-card .info{padding:8px;text-align:center;}
+.game-card .info h3{font-size:1rem;margin-bottom:6px;}
+.game-card .info .meta{font-size:.8rem;color:#ccc;}
+.game-card button{
+    margin-top:8px;padding:6px 0;background:#28a;border:none;border-radius:4px;color:#fff;cursor:pointer;width:100%;
+}
+.game-card button:hover{background:#3ab;}
+
+.app-page{padding:20px;}
+.app-page h2{font-size:2rem;margin-bottom:8px;}
+.app-page .screens{display:flex;gap:8px;overflow-x:auto;margin:12px 0;}
+.app-page .screens img{height:360px;border-radius:4px;}
+
+.footer{text-align:center;padding:14px;background:#000;font-size:.9rem;margin-top:20px;}
+
+.back-btn {
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+/* Адаптив баннера */
+@media (max-width: 768px) {
+    .banner {
+        height: 140px;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 180px;
+    }
+}
+
+/* Кнопка Установить */
+.btn-install {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #28a, #3ab);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn-install:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+.btn-install:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Иконка + заголовок на странице приложения */
+.app-header-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.app-icon-detail {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 1px solid #444;
+    border-radius: 12px;
+}
+
+@media (max-width: 480px) {
+    .app-header-detail {
+        flex-direction: column;
+        text-align: center;
+    }
+    .app-icon-detail {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 8px;
+    }
+    .btn-install {
+        width: 100%;
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+/* ——————————————————— Полная страница приложения ——————————————————— */
+
+.app-full-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 16px;
+    background: #111;
+    color: #eee;
+}
+
+.app-header-box {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.app-header-box .app-icon-detail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid #444;
+    background: #222;
+}
+
+.app-header-box .app-main-info {
+    flex-grow: 1;
+}
+.app-header-box h1 {
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+}
+.app-header-box .subline {
+    font-size: .9rem;
+    color: #aaa;
+}
+
+.app-buttons-row {
+    display: flex;
+    gap: 10px;
+    margin: 14px 0;
+    align-items: center;
+}
+
+.btn-install-full {
+    padding: 12px 24px;
+    background: linear-gradient(135deg,#28a,#3ab);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+    transition: .12s ease;
+}
+.btn-install-full:hover {
+    transform: translateY(-2px);
+}
+
+.review-box {
+    font-size: .95rem;
+    margin-top: 20px;
+    line-height: 1.5;
+    background: #1a1a1a;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.app-screens-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-top: 12px;
+}
+
+.app-screens-list img {
+    height: 360px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow:0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* адаптив */
+@media(max-width:720px){
+    .app-header-box{flex-direction:column;align-items:center;}
+    .app-header-box h1{font-size:1.8rem;text-align:center;}
+    .btn-install-full{width:100%;}
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.back-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.store-icon {
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+}
+
+.header-title:hover {
+    opacity: 0.8;
+}
