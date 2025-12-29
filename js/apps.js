@@ -14,7 +14,7 @@ const games = [
         ],
         img: "img/apps/icons/fff.png",
         section: "games",
-        fileUrl: "http://fish-mob.ru/download/files/archive/fishing.apk"
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/fff.apk"
     },
     {
         id: "kutegram",
@@ -32,7 +32,7 @@ const games = [
         ],
         img: "img/apps/icons/kutegram.png",
         section: "apps",
-        fileUrl: "http://144.31.16.165:5000/api/download/11"
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/kutegram.apk"
     },
     {
         id: "youtube",
@@ -49,7 +49,7 @@ const games = [
         ],
         img: "img/apps/icons/youtube.png",
         section: "apps",
-        fileUrl: "https://example.com/calc.apk"
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/youtube.apk"
     },
     {
         id: "minecraft",
@@ -66,7 +66,7 @@ const games = [
         ],
         img: "img/apps/icons/minecraft.png",
         section: "games",
-        fileUrl: "http://144.31.16.165:5000/api/download/12"
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/minecraft.apk"
     },
     {
         id: "geometrydash",
@@ -82,6 +82,134 @@ const games = [
         ],
         img: "img/apps/icons/geometrydash.png",
         section: "games",
-        fileUrl: "http://144.31.16.165:5000/api/download/124"
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/geometrydash.apk"
+    },
+    {
+        id: "angrybirds",
+        title: "Angry Birds",
+        desc: "Angry Birds выглядит как забавная версия классических городков. Игроку предстоит из рогатки стрелять птицами по замысловатым вражеским укреплениям.",
+        author: "Rovio",
+        genre: "Головоломка",
+        rating: "4.0",
+        minAndroid: "1.6",
+        version: "1.6.0",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/angrybirds.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/angrybirds.apk"
+    },
+    {
+        id: "subwaysurf",
+        title: "Subway Surfers",
+        desc: "УСКОРЯЙСЯ так быстро, как только сможешь! УВОРАЧИВАЙСЯ от приближающихся поездов!",
+        author: "Kiloo",
+        genre: "Раннер",
+        rating: "4.6",
+        minAndroid: "2.3.3",
+        version: "1.24.0",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/subwaysurf.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/subwaysurf.apk"
+    },
+    {
+        id: "pvsz",
+        title: "Plants vs Zombies",
+        desc: "Банда неугомонных зомби атакует ваш дом! Ухоженный сад ваша лучшая защита против неистовых орд нежити.",
+        author: "PopCap",
+        genre: "Стратегия",
+        rating: "4.9",
+        minAndroid: "1.5",
+        version: "1.2",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/pvsz.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/pvsz.apk"
+    },
+    {
+        id: "doodlejump",
+        title: "Doodle Jump",
+        desc: "Хит iPhone теперь доступен и для андроида! Прыгаем выше и выше, избегаем дырок в бумаге, плохих существ и неустойчивых платформ!",
+        author: "Lima",
+        genre: "Платформер",
+        rating: "4.0",
+        minAndroid: "2.3.3",
+        version: "1.3",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/doodlejump.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/doodlejump.apk"
+    },
+    {
+        id: "fruitninja",
+        title: "Fruit Ninja",
+        desc: "Цель — нарезать как можно большее количество фруктов. Довольно красочная игра и неплохой таймкиллер",
+        author: "HalfBrick",
+        genre: "Боевик",
+        rating: "4.9",
+        minAndroid: "2.3.3",
+        version: "1.9.5",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/fruitninja.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/fruitninja.apk"
+    },
+        {
+        id: "cuttherope",
+        title: "Cut The Rope",
+        desc: "Распакуйте коробку, так как маленький монстрик очень хочет съесть свои леденцы! Собирайте золотые звезды, ищите потайные призы и открывайте новые уровни в этой занимательной, веселой, основанной на физике игре!",
+        author: "ZeptoLab",
+        genre: "Платформер",
+        rating: "4.7",
+        minAndroid: "1.6",
+        version: "1.0.0",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/cuttherope.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/cutetherope.apk"
+    },
+    {
+        id: "flappybird",
+        title: "Flappy Bird",
+        desc: "Расправь крылья и лети...",
+        author: "DotGears",
+        genre: "Боевик",
+        rating: "5",
+        minAndroid: "2.2",
+        version: "1.2",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/flappybird.png",
+        section: "games",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flappybird.apk"
+    },
+    {
+        id: "flashlight",
+        title: "Фонарик",
+        desc: "Высокоинтелектуальный фонарик!",
+        author: "Devuni",
+        genre: "Утилиты",
+        rating: "5",
+        minAndroid: "4.1",
+        version: "5.4.1",
+        screenshots: [
+
+        ],
+        img: "img/apps/icons/flashlight.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flashlight.apk"
     }
 ];
