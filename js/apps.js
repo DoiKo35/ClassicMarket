@@ -2,9 +2,9 @@ const games = [
     {
         id: "fff",
         title: "Рыбалка для Друзей",
-        desc: "Рыбалка для Друзей - мобильный рыболовный симулятор! Можно играть как оффлайн, так и онлайн. В игре вас ждет 15 водоемов, более 30 наживок, более 140 различных рыб (как речных, так и морских), большой ассортимент снастей! Также вас ждет личная таблица рекордов и красивое оформление! В игре есть онлайн-магазин, рейтинг игроков, таблица рекордов онлайн, турниры онлайн!",
+        desc: "Рыбалка для Друзей - мобильный рыболовный симулятор! Можно играть как оффлайн, так и онлайн.",
         author: "evados",
-        genre: "Симулятор",
+        genre: "Симуляторы",
         rating: "4.4",
         minAndroid: "2.3.3",
         version: "1.22",
@@ -19,9 +19,9 @@ const games = [
     {
         id: "kutegram",
         title: "Kutegram",
-        desc: "Kutegram это неофициальный кроссплатформенный клиент на основе Qt для мессенджера Telegram.",
+        desc: "Kutegram это неофициальный кроссплатформенный клиент на основе Qt для Telegram.",
         author: "CRX",
-        genre: "Мессенджер",
+        genre: "Мессенджеры",
         rating: "4.1",
         minAndroid: "2.3.0",
         version: "1.0.0",
@@ -37,9 +37,9 @@ const games = [
     {
         id: "youtube",
         title: "YouTube",
-        desc: "Погрузитесь в мир бесконечного контента с YouTube — самой популярной платформой для видео на планете!",
+        desc: "Погрузитесь в мир бесконечного контента с YouTube.",
         author: "FlashBack",
-        genre: "Социальная сеть",
+        genre: "Социальные сети",
         rating: "4.8",
         minAndroid: "2.2",
         version: "2.4.4",
@@ -54,9 +54,9 @@ const games = [
     {
         id: "minecraft",
         title: "Minecraft: Pocket Edition",
-        desc: "Minecraft — это строительная игра жанра «песочница» созданная Маркусом Перссоном, основателем Mojang AB",
+        desc: "Minecraft — это строительная игра жанра песочница.",
         author: "Mojang AB",
-        genre: "Песочница",
+        genre: "Песочницы",
         rating: "4.3",
         minAndroid: "2.3.0",
         version: "0.8.1",
@@ -71,15 +71,13 @@ const games = [
     {
         id: "geometrydash",
         title: "Geometry Dash",
-        desc: "Будьте готовы к практически непроходимым испытаниям в мире Geometry Dash. Отточите свои навыки прыжков, полетов и переворотов на опасной дороге с остроконечными препятствиями!",
+        desc: "Практически непроходимые испытания и безумная музыка.",
         author: "RobTop",
-        genre: "Платформер",
+        genre: "Платформеры",
         rating: "4.4",
         minAndroid: "2.2",
         version: "1.0",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/geometrydash.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/geometrydash.apk"
@@ -87,15 +85,13 @@ const games = [
     {
         id: "angrybirds",
         title: "Angry Birds",
-        desc: "Angry Birds выглядит как забавная версия классических городков. Игроку предстоит из рогатки стрелять птицами по замысловатым вражеским укреплениям.",
+        desc: "Стреляйте птицами по укреплениям свиней.",
         author: "Rovio",
-        genre: "Головоломка",
+        genre: "Головоломки",
         rating: "4.0",
         minAndroid: "1.6",
         version: "1.6.0",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/angrybirds.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/angrybirds.apk"
@@ -103,15 +99,13 @@ const games = [
     {
         id: "subwaysurf",
         title: "Subway Surfers",
-        desc: "УСКОРЯЙСЯ так быстро, как только сможешь! УВОРАЧИВАЙСЯ от приближающихся поездов!",
+        desc: "Уворачивайтесь от поездов и собирайте монеты.",
         author: "Kiloo",
-        genre: "Раннер",
+        genre: "Раннеры",
         rating: "4.6",
         minAndroid: "2.3.3",
         version: "1.24.0",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/subwaysurf.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/subwaysurf.apk"
@@ -119,15 +113,13 @@ const games = [
     {
         id: "pvsz",
         title: "Plants vs Zombies",
-        desc: "Банда неугомонных зомби атакует ваш дом! Ухоженный сад ваша лучшая защита против неистовых орд нежити.",
+        desc: "Защитите свой дом от орд зомби.",
         author: "PopCap",
-        genre: "Стратегия",
+        genre: "Стратегии",
         rating: "4.9",
         minAndroid: "1.5",
         version: "1.2",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/pvsz.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/pvsz.apk"
@@ -135,15 +127,13 @@ const games = [
     {
         id: "doodlejump",
         title: "Doodle Jump",
-        desc: "Хит iPhone теперь доступен и для андроида! Прыгаем выше и выше, избегаем дырок в бумаге, плохих существ и неустойчивых платформ!",
+        desc: "Прыгай выше и выше!",
         author: "Lima",
-        genre: "Платформер",
+        genre: "Платформеры",
         rating: "4.0",
         minAndroid: "2.3.3",
         version: "1.3",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/doodlejump.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/doodlejump.apk"
@@ -151,31 +141,27 @@ const games = [
     {
         id: "fruitninja",
         title: "Fruit Ninja",
-        desc: "Цель — нарезать как можно большее количество фруктов. Довольно красочная игра и неплохой таймкиллер",
+        desc: "Режь фрукты и ставь рекорды.",
         author: "HalfBrick",
-        genre: "Боевик",
+        genre: "Боевики",
         rating: "4.9",
         minAndroid: "2.3.3",
         version: "1.9.5",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/fruitninja.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/fruitninja.apk"
     },
-        {
+    {
         id: "cuttherope",
         title: "Cut The Rope",
-        desc: "Распакуйте коробку, так как маленький монстрик очень хочет съесть свои леденцы! Собирайте золотые звезды, ищите потайные призы и открывайте новые уровни в этой занимательной, веселой, основанной на физике игре!",
+        desc: "Накорми Ам Няма конфетами!",
         author: "ZeptoLab",
-        genre: "Платформер",
+        genre: "Головоломки",
         rating: "4.7",
         minAndroid: "1.6",
         version: "1.0.0",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/cuttherope.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/cutetherope.apk"
@@ -183,15 +169,13 @@ const games = [
     {
         id: "flappybird",
         title: "Flappy Bird",
-        desc: "Расправь крылья и лети...",
+        desc: "Расправь крылья и лети.",
         author: "DotGears",
-        genre: "Боевик",
+        genre: "Боевики",
         rating: "5",
         minAndroid: "2.2",
         version: "1.2",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/flappybird.png",
         section: "games",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flappybird.apk"
@@ -199,17 +183,130 @@ const games = [
     {
         id: "flashlight",
         title: "Фонарик",
-        desc: "Высокоинтелектуальный фонарик!",
+        desc: "Простой и яркий фонарик.",
         author: "Devuni",
         genre: "Утилиты",
         rating: "5",
         minAndroid: "4.1",
         version: "5.4.1",
-        screenshots: [
-
-        ],
+        screenshots: [],
         img: "img/apps/icons/flashlight.png",
         section: "apps",
         fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flashlight.apk"
+    },
+
+    /* ───────────── ДОБАВЛЕННЫЕ ПРИЛОЖЕНИЯ ───────────── */
+
+    {
+        id: "chrome",
+        title: "Google Chrome",
+        desc: "Браузер, программа для просмотра интернет-страниц, от компании Google на основе свободного браузера Chromium и движка Blink.",
+        author: "Google LLC",
+        genre: "Браузеры",
+        rating: "4.6",
+        minAndroid: "4.0.1",
+        version: "42.0",
+        screenshots: [],
+        img: "img/apps/icons/chrome.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/chrome.apk"
+    },
+    {
+        id: "antutu",
+        title: "AnTuTu Benchmark",
+        desc: "Benchmark для теста всех основных параметров телефона.",
+        author: "AnTuTu",
+        genre: "Утилиты",
+        rating: "4.8",
+        minAndroid: "2.3",
+        version: "4.0",
+        screenshots: [],
+        img: "img/apps/icons/antutu.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/antutu.apk"
+    },
+    {
+        id: "esfile",
+        title: "ES Проводник",
+        desc: "ES File Explorer - бесплатный файловый менеджер, позволяющий: копировать, перемещать, удалять файлы, пакетное переименование файлов, выводить превью, использовать мультивыбор файлов, редактировать текстовые файлы.",
+        author: "ES Global",
+        genre: "Утилиты",
+        rating: "4.4",
+        minAndroid: "2.2",
+        version: "4.0.26",
+        screenshots: [],
+        img: "img/apps/icons/esfile.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/esfile.apk"
+    },
+    {
+        id: "j2meloader",
+        title: "J2ME Loader",
+        desc: "Запуск Java-игр/приложений (J2ME) на Android.",
+        author: "Play Software",
+        genre: "Эмуляторы",
+        rating: "4.7",
+        minAndroid: "2.3",
+        version: "1.4.2",
+        screenshots: [],
+        img: "img/apps/icons/j2meloader.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/j2meloader.apk"
+    },
+    {
+        id: "ibispaintx",
+        title: "ibisPaint X",
+        desc: "ibisPaint X - это приложение, основанное на концепции социального рисования. Вы можете опубликовать процесс рисования, чтобы разделить со всеми радость творчества.",
+        author: "ibis inc.",
+        genre: "Редакторы",
+        rating: "4.6",
+        minAndroid: "4.0.1",
+        version: "3.2.1",
+        screenshots: [],
+        img: "img/apps/icons/ibispaintx.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/ibispaintx.apk"
+    },
+    {
+        id: "mobizen",
+        title: "Mobizen",
+        desc: "Запись экрана, GIF, редактирование, все из одного приложения, Mobizen!",
+        author: "RSUPPORT",
+        genre: "Утилиты",
+        rating: "4.2",
+        minAndroid: "4.4",
+        version: "3.10.7.4",
+        screenshots: [],
+        img: "img/apps/icons/mobizen.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/mobizen.apk"
+    },
+    {
+        id: "tiktoklite",
+        title: "TikTok Lite",
+        desc: "TikTok Lite — это облегчённое глобальное видеосообщество, которое не просто развлекает. Здесь вы найдёте самые крутые короткие видео и сможете поделиться яркими моментами своей жизни со всем миром.",
+        author: "TikTok",
+        genre: "Социальные сети",
+        rating: "4.2",
+        minAndroid: "3.9",
+        version: "28.6.1",
+        screenshots: [],
+        img: "img/apps/icons/tiktoklite.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/tiktoklite.apk"
+    },
+    {
+        id: "wdw",
+        title: "Waving Droid Widget",
+        desc: "Виджет Waving Droid — это потрясающий виджет для главного экрана. Вы можете выбрать любого персонажа Android, например, кекс, пончик, эклер, мороженное Froyo, имбирный пряник, медовые соты, сэндвич с мороженым, желейные конфеты, KitKat, леденец, зефир, нугу, Oreo или пирог! Или добавить любое количество! А если не можете определиться, можете добавить всех!",
+        author: "AJR",
+        genre: "Виджеты",
+        rating: "4.6",
+        minAndroid: "2.2",
+        version: "5.4",
+        screenshots: [],
+        img: "img/apps/icons/wdw.png",
+        section: "apps",
+        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/wdw.apk"
     }
 ];

@@ -20,7 +20,7 @@ function renderList(filter="all", query=""){
             <img src="${game.img}" alt="${game.title}">
             <div class="info">
                 <h3>${game.title}</h3>
-                <div class="meta">★ ${game.rating} · Android: ${game.minAndroid}</div>
+                <div class="meta">★ ${game.rating} · Android: ${game.minAndroid}+</div>
             </div>
         `;
 

@@ -8,6 +8,12 @@ const detailContainer = document.getElementById("app-detail");
 function showAppDetail() {
     const id = getAppId();
     const app = games.find(g => g.id === id);
+    // 🔥 Меняем favicon на иконку приложения
+    const favicon = document.getElementById("dynamic-favicon");
+
+    if (favicon && app.img) {
+        favicon.href = app.img;
+    }
 
     if (!app) {
         detailContainer.innerHTML = `<p style="padding:20px;">Приложение не найдено 😕</p>`;
@@ -42,7 +48,7 @@ function showAppDetail() {
             </div>
 
             <div class="app-screens-list">
-                ${app.screenshots.map(s => `<img src="${s}" alt="Screenshot">`).join("")}
+                ${app.screenshots.map(s => `<img src="${s}" alt="Screenshot">`).join("") || "Скриншоты отсутствуют."}
             </div>
 
             <div class="review-box">
