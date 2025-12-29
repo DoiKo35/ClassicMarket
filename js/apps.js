@@ -14,7 +14,7 @@ const games = [
         ],
         img: "img/apps/icons/fff.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/fff.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/fff.apk"
     },
     {
         id: "kutegram",
@@ -32,7 +32,7 @@ const games = [
         ],
         img: "img/apps/icons/kutegram.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/kutegram.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/kutegram.apk"
     },
     {
         id: "youtube",
@@ -49,7 +49,7 @@ const games = [
         ],
         img: "img/apps/icons/youtube.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/youtube.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/youtube.apk"
     },
     {
         id: "minecraft",
@@ -66,7 +66,7 @@ const games = [
         ],
         img: "img/apps/icons/minecraft.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/minecraft.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/minecraft.apk"
     },
     {
         id: "geometrydash",
@@ -80,7 +80,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/geometrydash.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/geometrydash.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/geometrydash.apk"
     },
     {
         id: "angrybirds",
@@ -94,7 +94,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/angrybirds.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/angrybirds.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/angrybirds.apk"
     },
     {
         id: "subwaysurf",
@@ -108,7 +108,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/subwaysurf.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/subwaysurf.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/subwaysurf.apk"
     },
     {
         id: "pvsz",
@@ -122,7 +122,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/pvsz.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/pvsz.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/pvsz.apk"
     },
     {
         id: "doodlejump",
@@ -136,7 +136,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/doodlejump.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/doodlejump.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/doodlejump.apk"
     },
     {
         id: "fruitninja",
@@ -150,7 +150,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/fruitninja.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/fruitninja.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/fruitninja.apk"
     },
     {
         id: "cuttherope",
@@ -164,7 +164,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/cuttherope.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/cutetherope.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/cutetherope.apk"
     },
     {
         id: "flappybird",
@@ -178,7 +178,7 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/flappybird.png",
         section: "games",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flappybird.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/flappybird.apk"
     },
     {
         id: "flashlight",
@@ -192,15 +192,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/flashlight.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/flashlight.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/flashlight.apk"
     },
-
-    /* ───────────── ДОБАВЛЕННЫЕ ПРИЛОЖЕНИЯ ───────────── */
-
     {
         id: "chrome",
         title: "Google Chrome",
-        desc: "Браузер, программа для просмотра интернет-страниц, от компании Google на основе свободного браузера Chromium и движка Blink.",
+        desc: "Браузер от Google на основе Chromium.",
         author: "Google LLC",
         genre: "Браузеры",
         rating: "4.6",
@@ -209,12 +206,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/chrome.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/chrome.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/chrome.apk"
     },
     {
         id: "antutu",
         title: "AnTuTu Benchmark",
-        desc: "Benchmark для теста всех основных параметров телефона.",
+        desc: "Benchmark для тестирования устройства.",
         author: "AnTuTu",
         genre: "Утилиты",
         rating: "4.8",
@@ -223,12 +220,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/antutu.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/antutu.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/antutu.apk"
     },
     {
         id: "esfile",
         title: "ES Проводник",
-        desc: "ES File Explorer - бесплатный файловый менеджер, позволяющий: копировать, перемещать, удалять файлы, пакетное переименование файлов, выводить превью, использовать мультивыбор файлов, редактировать текстовые файлы.",
+        desc: "Мощный файловый менеджер.",
         author: "ES Global",
         genre: "Утилиты",
         rating: "4.4",
@@ -237,12 +234,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/esfile.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/esfile.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/esfile.apk"
     },
     {
         id: "j2meloader",
         title: "J2ME Loader",
-        desc: "Запуск Java-игр/приложений (J2ME) на Android.",
+        desc: "Запуск Java-игр на Android.",
         author: "Play Software",
         genre: "Эмуляторы",
         rating: "4.7",
@@ -251,12 +248,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/j2meloader.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/j2meloader.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/j2meloader.apk"
     },
     {
         id: "ibispaintx",
         title: "ibisPaint X",
-        desc: "ibisPaint X - это приложение, основанное на концепции социального рисования. Вы можете опубликовать процесс рисования, чтобы разделить со всеми радость творчества.",
+        desc: "Приложение для рисования.",
         author: "ibis inc.",
         genre: "Редакторы",
         rating: "4.6",
@@ -265,12 +262,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/ibispaintx.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/ibispaintx.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/ibispaintx.apk"
     },
     {
         id: "mobizen",
         title: "Mobizen",
-        desc: "Запись экрана, GIF, редактирование, все из одного приложения, Mobizen!",
+        desc: "Запись экрана.",
         author: "RSUPPORT",
         genre: "Утилиты",
         rating: "4.2",
@@ -279,12 +276,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/mobizen.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/mobizen.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/mobizen.apk"
     },
     {
         id: "tiktoklite",
         title: "TikTok Lite",
-        desc: "TikTok Lite — это облегчённое глобальное видеосообщество, которое не просто развлекает. Здесь вы найдёте самые крутые короткие видео и сможете поделиться яркими моментами своей жизни со всем миром.",
+        desc: "Облегчённая версия TikTok.",
         author: "TikTok",
         genre: "Социальные сети",
         rating: "4.2",
@@ -293,12 +290,12 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/tiktoklite.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/tiktoklite.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/tiktoklite.apk"
     },
     {
         id: "wdw",
         title: "Waving Droid Widget",
-        desc: "Виджет Waving Droid — это потрясающий виджет для главного экрана. Вы можете выбрать любого персонажа Android, например, кекс, пончик, эклер, мороженное Froyo, имбирный пряник, медовые соты, сэндвич с мороженым, желейные конфеты, KitKat, леденец, зефир, нугу, Oreo или пирог! Или добавить любое количество! А если не можете определиться, можете добавить всех!",
+        desc: "Коллекция Android-виджетов.",
         author: "AJR",
         genre: "Виджеты",
         rating: "4.6",
@@ -307,6 +304,6 @@ const games = [
         screenshots: [],
         img: "img/apps/icons/wdw.png",
         section: "apps",
-        fileUrl: "http://github.com/DoiKo35/ClassicMarket/blob/main/apps-apk/wdw.apk"
+        fileUrl: "https://raw.githubusercontent.com/DoiKo35/ClassicMarket/main/apps-apk/wdw.apk"
     }
 ];
