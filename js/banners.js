@@ -1,7 +1,7 @@
 const bannerImgs = [
-    "img/banners/banner1.png",
-    "img/banners/banner2.png",
-    "img/banners/banner3.png"
+    "img/banners/banner1.PNG",
+    "img/banners/banner2.PNG",
+    "img/banners/banner3.PNG"
 ];
 
 let bidx = 0;
