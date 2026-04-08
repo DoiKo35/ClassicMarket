@@ -1,44 +1,269 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ClassicMarket</title>
-<link rel="stylesheet" href="css/style.css" />
-<link rel="icon" href="img/bignewyearlogo.PNG" type="image/png">
-<link rel="icon" type="image/png" sizes="32x32" href="img/bignewyearlogo.PNG">
-<link rel="icon" type="image/png" sizes="16x16" href="img/bignewyearlogo.PNG">
-<link rel="apple-touch-icon" href="img/bignewyearlogo.PNG">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassicMarket</title>
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="icon" type="image/png" href="img/biglogo.png">
 </head>
 <body>
 
-<canvas id="snow-canvas"></canvas>
+    <div class="header">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="img/longlogo.png" class="logo-img">
+        </a>
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Поиск...">
+            <button class="search-btn" id="searchToggleBtn"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+    </div>
 
-<header class="header">
-    <img src="img/logo.png" alt="Лого" class="logo" />
-    <input type="text" id="search" placeholder="Поиск..." />
-</header>
+    <div class="tabs">
+        <div class="tab active" data-target="Приложения">Приложения</div>
+        <div class="tab" data-target="Игры">Игры</div>
+        <div class="tab" data-target="Загрузки">Загрузки</div>
+    </div>
 
-<section class="banner" id="banner"></section>
+	<div class="promo-banner" id="promoBanner">
+        <h2>Рекомендуем</h2>
+        <p>Лучшие игры и приложения недели</p>
+        <div class="carousel-container" id="carouselContainer"></div>
+    </div>
 
-<nav class="tabs">
-    <button data-section="all"><i class="fa fa-home"></i> Все</button>
-    <button data-section="games"><i class="fa fa-gamepad"></i> Игры</button>
-    <button data-section="apps"><i class="fa fa-tasks"></i> Приложения</button>
-</nav>
+    <div class="green-bar" id="categoryTitle">
+        Приложения
+    </div>
 
-<main id="content"></main>
+    <div class="app-list" id="appList">
+        </div>
 
-<footer class="footer">
-    <p>© 2025 ClassicMarket — Вся ностальгия в одном месте 🎮</p>
-    <p>ТГК: <a href="http://t.me/cmarketoff">@cmarketoff</a></p>
-</footer>
+    <script src="js/apps.js"></script>
+    <script>
+        const appListContainer = document.getElementById('appList');
+        const searchInput = document.getElementById('searchInput');
+        const searchToggleBtn = document.getElementById('searchToggleBtn');
+        const tabs = document.querySelectorAll('.tab');
+        const categoryTitle = document.getElementById('categoryTitle');
+        const promoBanner = document.getElementById('promoBanner');
 
-<script src="js/apps.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/banners.js"></script>
-<script src="js/snow.js"></script>
+        let currentCategory = 'Приложения';
+        let searchQuery = '';
 
+        // Логика кнопки поиска (появление инпута)
+        searchToggleBtn.addEventListener('click', () => {
+            searchInput.classList.toggle('active');
+            if (searchInput.classList.contains('active')) {
+                searchInput.focus();
+            } else {
+                searchInput.value = '';
+                searchQuery = '';
+                renderApps();
+            }
+        });
+		
+		// Функция для случайного перемешивания массива (Алгоритм Фишера-Йейтса)
+		function shuffleArray(array) {
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+			return array;
+		}
+		
+
+		// Функция рендера списка
+		function renderApps() {
+			// Перезапуск анимации при обновлении списка
+			appListContainer.style.animation = 'none';
+			void appListContainer.offsetWidth; // trigger reflow
+			appListContainer.style.animation = 'slideUp 0.3s ease-out';
+			
+			appListContainer.innerHTML = '';
+
+			if (currentCategory === 'Загрузки') {
+				promoBanner.style.display = 'none';
+				categoryTitle.textContent = 'Мои загрузки';
+				
+				const downloads = JSON.parse(localStorage.getItem('installHistory') || '[]');
+				
+				if (downloads.length === 0) {
+					appListContainer.innerHTML = '<div style="padding: 20px; text-align: center;">Список пуст</div>';
+					return;
+				}
+
+				// 1. Группируем
+				const groupedByDate = {};
+				downloads.forEach(d => {
+					if (!groupedByDate[d.date]) groupedByDate[d.date] = [];
+					const appObj = appsData.find(a => a.id === d.id);
+					if (appObj) groupedByDate[d.date].push(appObj);
+				});
+
+				// 2. Сортируем даты (от новых к старым)
+				const sortedDates = Object.keys(groupedByDate).sort((a, b) => {
+					const dateA = new Date(a.split('.').reverse().join('-'));
+					const dateB = new Date(b.split('.').reverse().join('-'));
+					return dateB - dateA; 
+				});
+
+				// 3. Рендерим
+				sortedDates.forEach(date => {
+					appListContainer.innerHTML += `<div class="date-divider">${date}</div>`;
+					groupedByDate[date].reverse().forEach(app => {
+						appListContainer.innerHTML += createAppHTML(app);
+					});
+				});
+
+			} else {
+				promoBanner.style.display = 'block';
+				categoryTitle.textContent = `${currentCategory}`;
+				
+				// 1. Фильтруем по категории
+				let filteredApps = appsData.filter(app => app.category === currentCategory);
+
+				// 2. РАНДОМИЗАЦИЯ
+				// Перемешиваем список, только если поиск пустой (чтобы результаты поиска не прыгали)
+				if (!searchQuery) {
+					shuffleArray(filteredApps);
+				}
+
+				// 3. Фильтруем по поиску (если он есть)
+				if (searchQuery) {
+					filteredApps = filteredApps.filter(app => app.name.toLowerCase().includes(searchQuery));
+				}
+
+				if (filteredApps.length === 0) {
+					appListContainer.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Ничего не найдено</div>';
+					return;
+				}
+
+				// 4. Рендерим итоговый список
+				filteredApps.forEach(app => {
+					appListContainer.innerHTML += createAppHTML(app);
+				});
+			}
+		}
+
+		// Функция для создания шаблона элемента списка
+		function createAppHTML(app) {
+			return `
+				<a href="app.html?id=${app.id}" class="app-item">
+					<img src="${app.icon}" class="app-icon" alt="${app.name}">
+					<div class="app-info">
+						<div class="app-title">${app.name}</div>
+						<div class="app-dev">${app.developer}</div>
+					</div>
+					<div class="app-meta">
+						<div class="stars">${getStars(app.rating)}</div>
+						<div class="min-android-tag">Android: ${app.minAndroid}+</div>
+					</div>
+				</a>
+			`;
+		}
+
+		// Обработка клика по вкладкам
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				const target = tab.getAttribute('data-target');
+
+				// ПРОВЕРКА: если кликнули по уже активной вкладке — ничего не делаем
+				if (target === currentCategory) {
+					return; 
+				}
+
+				// Если категория новая, продолжаем выполнение логики
+				tabs.forEach(t => t.classList.remove('active'));
+				tab.classList.add('active');
+				currentCategory = target;
+				
+				// Скрываем поиск при смене вкладки
+				searchInput.classList.remove('active');
+				searchInput.value = '';
+				searchQuery = '';
+				
+				renderApps();
+			});
+		});
+
+        // Обработка ввода в поиск
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderApps();
+        });
+		// --- ЛОГИКА КАРУСЕЛИ ---
+
+		const carouselContainer = document.getElementById('carouselContainer');
+
+		// 1. Укажи здесь ID приложений, которые хочешь видеть в карусели
+		// (ID должны совпадать с теми, что прописаны в apps.js)
+		const featuredIds = ['facebook', 'kutegram', 'minecraft', 'chrome', 'esfile']; 
+
+		// 2. Формируем массив объектов для карусели на основе выбранных ID
+		const carouselApps = featuredIds
+			.map(id => appsData.find(app => app.id === id))
+			.filter(app => app !== undefined); // Игнорируем, если приложение с таким ID не найдено
+
+		let currentCenterIndex = 0;
+		let carouselInterval;
+
+		function initCarousel() {
+			// Если массив пуст (например, ID указаны неверно), выходим из функции
+			if (carouselApps.length === 0) return;
+
+			carouselContainer.innerHTML = ''; 
+			
+			carouselApps.forEach((app, index) => {
+				const img = document.createElement('img');
+				img.src = app.icon;
+				img.className = 'carousel-item hidden';
+				
+				// Переход на страницу конкретного приложения по клику
+				img.onclick = () => window.location.href = `app.html?id=${app.id}`;
+				img.style.cursor = 'pointer';
+				
+				carouselContainer.appendChild(img);
+			});
+
+			updateCarousel();
+
+			// Автопрокрутка
+			clearInterval(carouselInterval);
+			carouselInterval = setInterval(() => {
+				currentCenterIndex = (currentCenterIndex + 1) % carouselApps.length;
+				updateCarousel();
+			}, 2500);
+		}
+
+		function updateCarousel() {
+			const items = document.querySelectorAll('.carousel-item');
+			const total = items.length;
+
+			if (total === 0) return;
+
+			items.forEach((item, i) => {
+				const leftIndex = (currentCenterIndex - 1 + total) % total;
+				const rightIndex = (currentCenterIndex + 1) % total;
+
+				if (i === currentCenterIndex) {
+					item.className = 'carousel-item center';
+				} else if (i === leftIndex) {
+					item.className = 'carousel-item left';
+				} else if (i === rightIndex) {
+					item.className = 'carousel-item right';
+				} else {
+					item.className = 'carousel-item hidden';
+				}
+			});
+		}
+
+		// Запуск
+		initCarousel();
+        // --- КОНЕЦ ЛОГИКИ КАРУСЕЛИ ---
+
+        // Первичный рендер
+        renderApps();
+    </script>
 </body>
 </html>

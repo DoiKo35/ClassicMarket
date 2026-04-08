@@ -1,35 +1,143 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ClassicMarket — Детали</title>
-<link rel="stylesheet" href="css/style.css" />
-<link id="dynamic-favicon" rel="icon" href="img/bignewyearlogo.PNG" type="image/png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка...</title> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/biglogo.png">
 </head>
-<body>
+<body style="padding-bottom: 70px;"> 
 
-<canvas id="snow-canvas"></canvas>
+    <div class="app-header-detail" id="appHeader"></div>
 
-<header class="header">
-    <div class="header-title" onclick="window.location.href='index.html'">
-        <img src="img/back.png" alt="Back" class="back-icon">
-        <img src="img/bignewyearlogo.PNG" alt="Store" class="store-icon">
+	<div class="green-bar">Информация о приложении</div>
+	<div class="screenshots-container" id="screenshots"></div>
+    <div class="description" id="appDesc"></div>
+	
+	<div class="green-bar">Мой отзыв</div>
+    <div class="review-section">
+        <div class="my-rating" id="ratingStars">
+            <span data-value="1">☆</span>
+            <span data-value="2">☆</span>
+            <span data-value="3">☆</span>
+            <span data-value="4">☆</span>
+            <span data-value="5">☆</span>
+        </div>
+        <div style="font-size: 12px; color: #666;" id="ratingStatus">Нажмите, чтобы оценить</div>
     </div>
-</header>
 
+    <div class="bottom-bar">
+        <button class="install-btn" id="installBtn">Установить</button>
+    </div>
 
-<main id="app-detail"></main>
+    <script src="js/apps.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('id');
+        const app = appsData.find(a => a.id === appId);
 
-<footer class="footer">
-    <p>© 2025 ClassicMarket — Вся ностальгия в одном месте 🎮</p>
-    <p>ТГК: <a href="http://t.me/cmarketoff">@cmarketoff</a></p>
-</footer>
+        if (app) {
+            // 1. Заголовок и иконка
+            document.title = `${app.name} - ClassicMarket`;
+            let linkFavicon = document.querySelector("link[rel~='icon']");
+            if (linkFavicon) linkFavicon.href = app.icon;
 
-<script src="js/apps.js"></script>
-<script src="js/app-detail.js"></script>
-<script src="js/snow.js"></script>
+            // 2. Заполняем хедер (закрываем обратные кавычки СРАЗУ после HTML)
+            document.getElementById('appHeader').innerHTML = `
+                <a href="index.html" class="back-btn"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <img src="${app.icon}" class="app-icon" style="background: white; padding: 2px; border-radius: 4px;" alt="${app.name}">
+                <div class="app-info">
+                    <div class="app-title">${app.name}</div>
+                    <div class="app-dev">${app.developer}</div>
+                    ${getStars(app.rating)} 
+                </div>
+            `;
 
+            // 3. Рендер скриншотов (отдельный JS код, НЕ в строке)
+            const screenshotBox = document.getElementById('screenshots');
+            if (app.screenshots && app.screenshots.length > 0) {
+                app.screenshots.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.className = 'screenshot-item';
+                    screenshotBox.appendChild(img);
+                });
+            } else {
+                screenshotBox.style.display = 'none';
+            }
+
+            // 4. Заполняем описание
+            document.getElementById('appDesc').innerHTML = `
+                ${app.description}
+                <br><br>
+                <div style="font-size: 16px; color: #444;">
+					<div>Категория: ${app.category}</div>
+					<div>Требуемый Android: ${app.minAndroid}</div>
+					<div>Версия: ${app.version}</div>
+					<div id="appSize">Размер: Загрузка...</div>
+                </div>
+            `;
+
+			// 5. Логика установки (теперь всегда скачивает)
+			const installBtn = document.getElementById('installBtn');
+
+			installBtn.addEventListener('click', () => {
+				// Просто запускаем скачивание без всяких проверок
+				const downloadLink = document.createElement('a');
+				downloadLink.href = app.app; // берет ссылку из apps.js
+				downloadLink.download = ''; 
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+				document.body.removeChild(downloadLink);
+				
+				// (Опционально) Можно оставить сохранение в историю для вкладки "Загрузки", 
+				// но кнопка на этой странице меняться не будет.
+				let installHistory = JSON.parse(localStorage.getItem('installHistory') || '[]');
+				if (!installHistory.find(d => d.id === app.id)) {
+					const today = new Date().toLocaleDateString('ru-RU');
+					installHistory.push({ id: app.id, date: today });
+					localStorage.setItem('installHistory', JSON.stringify(installHistory));
+				}
+			});
+
+            // 6. Рейтинг пользователя
+            const stars = document.querySelectorAll('#ratingStars span');
+            const ratingStatus = document.getElementById('ratingStatus');
+            let userRatings = JSON.parse(localStorage.getItem('userRatings') || '{}');
+            let currentRating = userRatings[app.id] || 0;
+
+            function updateStarsUI(rating) {
+                stars.forEach(star => {
+                    const starValue = parseInt(star.getAttribute('data-value'));
+                    star.textContent = starValue <= rating ? '★' : '☆';
+                    star.classList.toggle('filled', starValue <= rating);
+                });
+                if (rating > 0) ratingStatus.textContent = `Ваша оценка: ${rating}/5`;
+            }
+
+            updateStarsUI(currentRating);
+            stars.forEach(star => {
+                star.addEventListener('click', (e) => {
+                    const rating = parseInt(e.target.getAttribute('data-value'));
+                    userRatings[app.id] = rating;
+                    localStorage.setItem('userRatings', JSON.stringify(userRatings));
+                    updateStarsUI(rating);
+                });
+            });
+
+        } else {
+            // Если приложение не найдено
+            document.body.innerHTML = `
+                <div class="app-header-detail" id="appHeader">
+                    <a href="index.html" class="back-btn"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                </div>
+                <h2 style="padding: 20px; color: #333; text-align: center;">Приложение не найдено!</h2>
+            `;
+        }
+		
+		updateAppSize(app.app);
+    </script>
 </body>
 </html>

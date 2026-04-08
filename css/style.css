@@ -1,0 +1,401 @@
+/* style.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+	-webkit-user-select: none;  /* Safari */
+    -ms-user-select: none;      /* IE 10+ и Edge */
+    user-select: none;          /* Стандартный синтаксис */
+    -webkit-touch-callout: none; /* Отключает системное меню на iOS при долгом нажатии */
+}
+
+/* Если тебе всё же нужно оставить возможность выделять текст в поиске */
+input, textarea {
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Запрещаем перетаскивание картинок (нестандартное, но рабочее свойство) */
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+/* Анимации навигации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Общий хедер */
+.header {
+    background: linear-gradient(to bottom, #6b6b6b 0%, #3f3f3f 100%);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #555;
+    justify-content: space-between;
+}
+
+.logo-img {
+    height: 87px; /* Размер логотипа-картинки */
+    display: block;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.search-input.active {
+    width: 140px;
+    opacity: 1;
+    padding: 5px 10px;
+    border: 1px solid #666;
+    margin-right: 5px;
+}
+
+.search-btn {
+    background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 19px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+	height: 38px;
+	width: 38px;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+.back-btn:active {
+    transform: scale(0.9);
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    background: linear-gradient(to bottom, #e8e8e8, #c8c8c8);
+    border-bottom: 1px solid #999;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #555;
+    border-right: 1px solid #aaa;
+    border-left: 1px solid #fff;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.tab:first-child { border-left: none; }
+.tab:last-child { border-right: none; }
+
+.tab.active {
+    background: linear-gradient(to bottom, #d8d8d8, #b8b8b8);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    color: #333;
+}
+
+/* Зеленые секции и разделители дат */
+.green-bar {
+    background: linear-gradient(to bottom, #b4d348 0%, #8eb321 100%);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #7a9c18;
+}
+
+.date-divider {
+    background: #e0e0e0;
+    color: #555;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    text-transform: uppercase;
+}
+
+.promo-banner {
+    background: linear-gradient(to bottom, #c6e04d, #ffffff);
+    text-align: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+}
+
+/* Список приложений */
+.app-list {
+    background: #fff;
+    animation: slideUp 0.3s ease-out; /* Анимация при переключении вкладок */
+}
+
+.app-item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.app-item:active {
+    background-color: #e0e0e0;
+}
+
+.app-icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+
+.app-info {
+    flex: 1;
+}
+
+.app-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.app-dev {
+    color: #666;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.app-item .rating-number {
+    color: #666;
+}
+
+.stars {
+    color: #999;
+    font-size: 14px;
+}
+
+.stars-wrapper i {
+    font-size: 12px;
+}
+
+.stars-wrapper .filled {
+    color: #8eb321; /* Тот самый зеленый Android Market */
+}
+
+.rating-number {
+    margin-left: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ccc; /* Светлый текст на темном фоне хедера */
+}
+
+
+.stars-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: 4px;
+}
+
+/* Страница приложения */
+.app-header-detail {
+    background: linear-gradient(to bottom, #6b6b6b 0%, #3f3f3f 100%);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: white;
+}
+
+.app-header-detail .app-title {
+    font-size: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.app-header-detail .app-dev {
+    color: #d0e0f0;
+}
+
+.review-section {
+    background: white;
+    padding: 10px;
+}
+
+.my-rating {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    display: inline-block;
+}
+.my-rating span { transition: color 0.2s; }
+.my-rating .filled { color: #8eb321; }
+
+/* Контейнер скриншотов */
+.screenshots-container {
+    display: flex;
+    overflow-x: auto;
+    background: #eee;
+    padding: 10px;
+    gap: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Контейнер для рейтинга и версии */
+.app-meta {
+    display: flex;
+    flex-direction: column; /* Элементы будут стоять вертикально */
+    align-items: flex-end;  /* Выравнивание по правому краю */
+    justify-content: center;
+    min-width: 80px;
+}
+
+/* Стиль для текста версии Android */
+.min-android-tag {
+    font-size: 10px;      /* Маленький шрифт */
+    color: #888;          /* Серый цвет, чтобы не отвлекал */
+    margin-top: 4px;      /* Отступ от звезд */
+    font-weight: normal;
+    background: #e8e8e8;  /* Легкий фон, как на старых маркетах */
+    padding: 1px 4px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.screenshot-item {
+    height: 180px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+.description {
+    background: white;
+    padding: 15px 10px;
+    line-height: 1.4;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    min-height: 200px;
+}
+
+/* Кнопка установки */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #d2d2d2, #8b8b8b);
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #555;
+}
+
+.install-btn {
+    background: linear-gradient(to bottom, #f5f5f5, #cccccc);
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 1px 2px rgba(0,0,0,0.3);
+    cursor: pointer;
+    width: 80%;
+    transition: background 0.2s;
+}
+.install-btn:active {
+    background: linear-gradient(to bottom, #cccccc, #f5f5f5);
+}
+
+/* Карусель (Рекомендуемое) */
+.carousel-container {
+    position: relative;
+    height: 110px; /* Высота под карусель и отражение */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.carousel-item {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    transition: all 0.5s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    /* Эффект отражения как на старых устройствах */
+    -webkit-box-reflect: below 2px linear-gradient(transparent, transparent 50%, rgba(255,255,255,0.5));
+}
+
+/* Центральный элемент (самый большой и яркий) */
+.carousel-item.center {
+    transform: translateX(0) scale(1.3);
+    opacity: 1;
+    z-index: 3;
+}
+
+/* Левый элемент (поменьше, прозрачнее) */
+.carousel-item.left {
+    transform: translateX(-70px) scale(0.9);
+    opacity: 0.5;
+    z-index: 2;
+}
+
+/* Правый элемент (поменьше, прозрачнее) */
+.carousel-item.right {
+    transform: translateX(70px) scale(0.9);
+    opacity: 0.5;
+    z-index: 2;
+}
+
+/* Скрытые элементы (прячутся сзади) */
+.carousel-item.hidden {
+    transform: translateX(0) scale(0.5);
+    opacity: 0;
+    z-index: 1;
+}
+
+.app-item:active {
+    background: linear-gradient(to bottom, #ff9000, #ff6600) !important; /* Классический оранжевый фокус */
+    color: white;
+}
+.app-item:active .app-dev, .app-item:active .stars {
+    color: white;
+}
