@@ -1,264 +1,43 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка...</title> 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/png" href="img/biglogo.png">
-</head>
-<body style="padding-bottom: 70px;"> 
-	<div id="loadingScreen" class="loading-overlay">
-		<div class="loader-content">
-			<div class="android-1-6-spinner"></div>
-		</div>
-	</div>
-
-    <div class="app-header-detail" id="appHeader"></div>
-
-	<div class="green-bar">Информация о приложении</div>
-	<div class="screenshots-container" id="screenshots"></div>
-    <div class="description" id="appDesc"></div>
-	
-	<div class="green-bar" style="display: flex; justify-content: space-between; align-items: center;">
-        <span>Мой отзыв</span>
-        <span style="font-size: 12px; font-weight: normal; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px;">
-            Рейтинг: <span id="averageRating">...</span> <span id="votesCount"></span>
-        </span>
-    </div>
-    <div class="review-section">
-        <div class="my-rating" id="ratingStars">
-            <span data-value="1">☆</span>
-            <span data-value="2">☆</span>
-            <span data-value="3">☆</span>
-            <span data-value="4">☆</span>
-            <span data-value="5">☆</span>
-        </div>
-        <div style="font-size: 12px; color: #666;" id="ratingStatus">Нажмите, чтобы оценить</div>
-    </div>
-	
-	<div class="green-bar">Смотрите также</div>
-	<div class="other-apps-scroll" id="otherAppsScroll"></div>
-
-    <div class="bottom-bar">
-        <button class="install-btn" id="installBtn">Установить</button>
-    </div>
-	
-	<div id="imageModal" class="modal" onclick="this.style.display='none'">
-		<span class="close">&times;</span>
-		<img class="modal-content" id="modalImg">
-	</div>
-
-    <script src="js/apps.js"></script>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const appId = urlParams.get('id');
-        const app = appsData.find(a => a.id === appId);
-		const appUrlParams = new URLSearchParams(window.location.search);
-		const isInMarketApp = appUrlParams.has('inmarket');
-
-		// Ссылка на твой Google Script API
-		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybxjw1aOkDY3ulurzog4SBMhG5EuM3Qa42RBltm7RYWk2A2K_a6HS2fAkz9ldlChuJOA/exec";
-
-        if (app) {
-            // 1. Заголовок и иконка
-            document.title = `${app.name} - ClassicMarket`;
-            let linkFavicon = document.querySelector("link[rel~='icon']");
-            if (linkFavicon) linkFavicon.href = app.icon;
-
-            // 2. Заполняем хедер
-            document.getElementById('appHeader').innerHTML = `
-                <a href="index.html" class="back-btn"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <img src="${app.icon}" class="app-icon" style="background: white; padding: 2px; border-radius: 4px;" alt="${app.name}">
-                <div class="app-info">
-                    <div class="app-title">${app.name}</div>
-                    <div class="app-dev">${app.developer}</div>
-                    ${getStars(app.rating)} 
-                </div>
-            `;
-
-            // 3. Рендер скриншотов с функцией увеличения (модальное окно)
-            const screenshotBox = document.getElementById('screenshots');
-            if (app.screenshots && app.screenshots.length > 0) {
-                app.screenshots.forEach(src => {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.className = 'screenshot-item';
-					img.style.cursor = 'zoom-in'; // Указатель лупы
-					img.onclick = () => openModal(src); // Привязка функции увеличения
-                    screenshotBox.appendChild(img);
-                });
-            } else {
-                screenshotBox.style.display = 'none';
-            }
-
-            // 4. Заполняем описание
-            document.getElementById('appDesc').innerHTML = `
-                ${app.description}
-                <br><br>
-                <div style="font-size: 16px; color: #444;">
-					<div>Категория: ${app.category}</div>
-					<div>Жанр: ${app.genre || 'Не указан'}</div>
-					<div>Android: ${app.minAndroid}+</div>
-					<div>Версия: ${app.version}</div>
-					<div id="appSize">Размер: Загрузка...</div>
-                </div>
-            `;
-
-			// 5. Логика установки
-			const installBtn = document.getElementById('installBtn');
-
-			installBtn.addEventListener('click', () => {
-				const downloadLink = document.createElement('a');
-				downloadLink.href = app.app; 
-				downloadLink.download = ''; 
-				document.body.appendChild(downloadLink);
-				downloadLink.click();
-				document.body.removeChild(downloadLink);
-				
-				let installHistory = JSON.parse(localStorage.getItem('installHistory') || '[]');
-				if (!installHistory.find(d => d.id === app.id)) {
-					const today = new Date().toLocaleDateString('ru-RU');
-					installHistory.push({ id: app.id, date: today });
-					localStorage.setItem('installHistory', JSON.stringify(installHistory));
-				}
-			});
-
-            // 6. Рейтинг пользователя и Google Sheets API
-            const stars = document.querySelectorAll('#ratingStars span');
-            const ratingStatus = document.getElementById('ratingStatus');
-            let userRatings = JSON.parse(localStorage.getItem('userRatings') || '{}');
-            let currentRating = userRatings[app.id] || 0;
-
-			// Функция загрузки рейтинга из таблицы
-			async function loadRating(appId) {
-				try {
-					const response = await fetch(`${SCRIPT_URL}?appId=${appId}`);
-					const data = await response.json();
-					document.getElementById('averageRating').innerText = data.average;
-					document.getElementById('votesCount').innerText = `(${data.count})`;
-				} catch (e) {
-					console.error("Ошибка загрузки рейтинга", e);
-					document.getElementById('averageRating').innerText = app.rating; // Запасной вариант
-				}
-			}
-
-			// Функция отправки рейтинга в таблицу
-			async function sendRating(appId, score) {
-				ratingStatus.innerText = "Отправка...";
-				try {
-					await fetch(SCRIPT_URL, {
-						method: "POST",
-						body: JSON.stringify({ appId: appId, rating: score })
-					});
-					ratingStatus.innerText = "Спасибо за оценку!";
-					loadRating(appId); // Обновляем средний балл на экране
-				} catch (e) {
-					ratingStatus.innerText = "Ошибка при отправке";
-				}
-			}
-
-            function updateStarsUI(rating) {
-                stars.forEach(star => {
-                    const starValue = parseInt(star.getAttribute('data-value'));
-                    star.textContent = starValue <= rating ? '★' : '☆';
-                    star.classList.toggle('filled', starValue <= rating);
-                });
-                if (rating > 0) ratingStatus.textContent = `Ваша оценка: ${rating}/5`;
-            }
-
-            updateStarsUI(currentRating);
-            
-			stars.forEach(star => {
-                star.addEventListener('click', (e) => {
-					// Проверяем, голосовал ли уже
-					if (userRatings[app.id]) {
-						ratingStatus.textContent = "Вы уже оценивали это приложение!";
-						return;
-					}
-                    const rating = parseInt(e.target.getAttribute('data-value'));
-                    
-					// Сохраняем локально и обновляем UI
-					userRatings[app.id] = rating;
-                    localStorage.setItem('userRatings', JSON.stringify(userRatings));
-                    updateStarsUI(rating);
-					
-					// Отправляем в Google Таблицу
-					sendRating(app.id, rating);
-                });
-            });
-
-			// Загружаем актуальный рейтинг при открытии страницы
-			loadRating(app.id);
-			
-			// 7. Другие приложения
-			const otherAppsScroll = document.getElementById('otherAppsScroll');
-			let suggestions = appsData.filter(item => item.category === app.category && item.id !== app.id);
-			if (suggestions.length < 4) {
-				const extra = appsData.filter(item => item.id !== app.id && !suggestions.includes(item));
-				suggestions = [...suggestions, ...extra];
-			}
-			suggestions = suggestions.sort(() => Math.random() - 0.5).slice(0, 8); 
-			suggestions.forEach(suggest => {
-				const item = document.createElement('a');
-				item.href = `app.html?id=${suggest.id}`;
-				item.className = 'suggest-item';
-				item.innerHTML = `
-					<img src="${suggest.icon}" class="suggest-icon" alt="${suggest.name}">
-					<div class="suggest-title">${suggest.name}</div>
-				`;
-				otherAppsScroll.appendChild(item);
-			});
-
-        } else {
-            // Если приложение не найдено
-            document.body.innerHTML = `
-                <div class="app-header-detail" id="appHeader">
-                    <a href="index.html" class="back-btn"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                </div>
-                <h2 style="padding: 20px; color: #333; text-align: center;">Приложение не найдено!</h2>
-            `;
+    <title>Ошибка</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        body { 
+            background: #000; 
+            color: #fff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+            font-family: 'Droid Sans', Arial, sans-serif;
         }
-		
-		if (isInMarketApp) {
-			const backBtn = document.querySelector('.back-btn');
-			if (backBtn) {
-				backBtn.href = 'index.html?inmarket';
-			}
-		}
-		
-		// Логика экрана загрузки
-		window.addEventListener('load', function() {
-			const loader = document.getElementById('loadingScreen');
-			setTimeout(() => {
-				loader.style.opacity = '0';
-				setTimeout(() => { loader.style.display = 'none'; }, 500); 
-			}, 300); 
-		});
-
-		const timeoutSeconds = 10; 
-		const connectionTimeout = setTimeout(() => {
-			const errorMsg = document.getElementById('loadingError');
-			if (errorMsg) errorMsg.style.display = 'block';
-		}, timeoutSeconds * 1000);
-
-		window.addEventListener('load', () => {
-			clearTimeout(connectionTimeout);
-			if (app && typeof updateAppSize === 'function') {
-				updateAppSize(app.app);
-			}
-		});
-    </script>
-	
-	<script>
-		// Функция для модального окна
-		function openModal(src) {
-			const modal = document.getElementById('imageModal');
-			const modalImg = document.getElementById('modalImg');
-			modal.style.display = 'flex';
-			modalImg.src = src;
-		}
-	</script>
+        .error-icon { color: #8eb321; font-size: 48px; margin-bottom: 10px; }
+        h1 { font-size: 18px; margin: 0 0 10px 0; }
+        p { font-size: 14px; color: #ccc; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #8eb321;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-dialog">
+        <div class="error-icon"><i class="fa fa-exclamation-triangle"></i></div>
+        <h1>Ошибка</h1>
+        <p>Вы находитесь на старом сайте маркета. Он больше недоступен.</p>
+		<p>Перейдите на новый сайт!</p>
+        <a href="https://classicmarket.neocities.org" class="back-btn">Перейти в Маркет</a>
+    </div>
 </body>
 </html>
